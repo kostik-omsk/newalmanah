@@ -691,7 +691,8 @@ figure img {
 }
 
 .excel {
-  width: 200px;
+  max-width: 200px;
+  margin-bottom: 15px;
 }
 @media (max-width: 768px) {
   .p3 .subtitle {
