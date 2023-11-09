@@ -369,6 +369,7 @@ body {
   font: 1em/1.6em 'Open Sans', sans-serif;
   color: #353535;
 }
+
 .col {
   display: flex;
 }
@@ -454,12 +455,15 @@ body {
   #menu {
     display: none;
   }
+
   .menu__btn {
     display: block;
     margin-top: 0.6rem;
     font-weight: 600;
   }
-  .mobile.open {
+
+  #menu.open {
+    margin: 0;
     position: absolute;
     left: 0;
     right: 0;
@@ -468,29 +472,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     background: rgb(35, 35, 35);
+    transform: scale(1);
+    transition: all 0.8s;
     z-index: 10;
   }
-  .mobile__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-align: center;
-  }
-  .mobile__item {
+
+  .menu__li {
     margin-bottom: 1rem;
   }
-  .mobile__a {
-    color: #0098fb;
+
+  .menu__a {
     font-size: 1.5rem;
     font-weight: 600;
     line-height: 2rem;
-    text-decoration: none;
   }
 }
-@media only screen and (max-width: 576px) {
-}
+
 .menu__a,
 .menu__btn {
   text-decoration: none;
@@ -784,7 +784,7 @@ figure img {
   position: relative;
   z-index: 10;
   max-width: 500px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   border-radius: 10px;
   margin: 0 15px 0 15px;
 }
@@ -795,9 +795,73 @@ figure img {
   width: 100vw;
   height: 100vh;
 }
+
 .p5 .title {
+  font-size: clamp(20px, 3vw, 28px);
   color: #fff;
 }
+
+@media only screen and (max-width: 768px) {
+  .p5 {
+    justify-content: flex-start !important;
+  }
+  .connection {
+    margin-top: 1rem;
+  }
+  .connection__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .arrow {
+    display: block;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    transform: rotate(0deg);
+    transition: all 0.5s;
+  }
+
+  .arrow::after {
+    content: '';
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid #717171;
+    border-bottom: 2px solid #717171;
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+  .connection__body {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+  }
+  .connection__body::before {
+    content: '';
+    margin-bottom: 6px;
+    display: block;
+    width: 100%;
+    border-top: 0.5px solid #aea1a1;
+  }
+
+  .deployed .connection__body {
+    padding-bottom: 1rem;
+    max-height: 500px;
+  }
+  .deployed .arrow {
+    transform: rotate(-180deg);
+  }
+}
+@media only screen and (max-width: 576px) {
+}
+
 .p5 .subtitle {
   color: #fff;
 }

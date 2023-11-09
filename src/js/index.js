@@ -1,4 +1,4 @@
-var myFullpage = new fullpage('#fullpage', {
+const myFullpage = new fullpage('#fullpage', {
   licenseKey: '',
   // Навигация
 
@@ -80,13 +80,34 @@ var myFullpage = new fullpage('#fullpage', {
   afterResize: function (width, height) {},
   afterReBuild: function () {},
   afterResponsive: function (isResponsive) {},
-  afterSlideLoad: function (
-    section,
-    origin,
-    destination,
-    direction,
-    trigger
-  ) {},
+  afterSlideLoad: function (section, origin, destination, direction, trigger) {},
   onSlideLeave: function (section, origin, destination, direction, trigger) {},
   onScrollOverflow: function (section, slide, position, direction) {},
+});
+
+const body = document.querySelector('body');
+const menuBtn = document.querySelector('.menu__btn');
+const navList = document.querySelector('#menu');
+const connectionBtn = document.querySelector('.connection__header');
+const connectionBody = document.querySelector('.connection');
+body.addEventListener('click', (e) => {
+  let click = e.target;
+  if (
+    click.closest('.menu__btn') ||
+    (click.closest('.menu__li') && click.closest('.open')) ||
+    (click.closest('.open') && !click.closest('#menu'))
+  ) {
+    menuBtn.classList.toggle('open');
+    body.classList.toggle('open');
+    navList.classList.toggle('open');
+    if (menuBtn.closest('.open')) {
+      menuBtn.innerHTML = 'Закрыть меню';
+    } else {
+      menuBtn.innerHTML = 'Меню';
+    }
+  }
+});
+
+connectionBtn.addEventListener('click', () => {
+  connectionBody.classList.toggle('deployed');
 });
